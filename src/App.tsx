@@ -1,4 +1,4 @@
-import { useCallback, useEffect, useState } from "react";
+import { useCallback, useEffect, useRef, useState } from "react";
 import { ENTRIES } from "./data/entries";
 import {
   createGame,
@@ -93,6 +93,7 @@ function GameBoard({
   const correctLetters = getGuessableLetters(game.entry.text);
   const remaining = game.maxWrongGuesses - game.wrongGuesses;
   const isOver = game.status !== "playing";
+  const restartButtonRef = useRef<HTMLButtonElement>(null);
 
   useEffect(() => {
     if (game.status === "lost") {
@@ -102,6 +103,12 @@ function GameBoard({
       vibrate(40);
     }
   }, [game.status]);
+
+  // Moves focus onto the overlay once it appears, since it now covers the
+  // keyboard key that had focus (which is also disabled at this point).
+  useEffect(() => {
+    if (isOver) restartButtonRef.current?.focus();
+  }, [isOver]);
 
   return (
     <>
@@ -141,6 +148,7 @@ function GameBoard({
               )}
               <div className="app__result-actions">
                 <button
+                  ref={restartButtonRef}
                   type="button"
                   className="app__restart"
                   onClick={onRestart}
