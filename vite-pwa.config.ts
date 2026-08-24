@@ -1,9 +1,7 @@
 import { VitePWA, type VitePWAOptions } from "vite-plugin-pwa";
 
-// `base: "./"` in vite.config.ts keeps every generated URL relative, which
-// is what makes this manifest work whether the app is served from a domain
-// root (Netlify) or a /wordwright/ subdirectory (GitHub Pages) — both are
-// produced by the same `yarn build:netlify` invocation via --outDir/--base.
+// base: "./" in vite.config.ts keeps generated URLs relative, so this
+// manifest works whether served from a domain root or a /wordwright/ subpath.
 export function pwaPlugin(): ReturnType<typeof VitePWA> {
   const options: Partial<VitePWAOptions> = {
     registerType: "autoUpdate",
@@ -30,11 +28,8 @@ export function pwaPlugin(): ReturnType<typeof VitePWA> {
     },
     workbox: {
       globPatterns: ["**/*.{js,css,html,ico,png,svg,webmanifest}"],
-      // Google Fonts (Baloo 2, Nunito) are loaded from CDN in index.html and
-      // drive the game's display/body typefaces — without them cached, an
-      // offline reload would fall back to system fonts. CacheFirst is safe
-      // since these are versioned URLs that don't change without a code
-      // change.
+      // Google Fonts are loaded from CDN; cache them so an offline reload
+      // doesn't fall back to system fonts.
       runtimeCaching: [
         {
           urlPattern: /^https:\/\/fonts\.(googleapis|gstatic)\.com\//,

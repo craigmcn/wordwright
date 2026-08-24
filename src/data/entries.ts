@@ -1,9 +1,7 @@
 import type { WordEntry } from "../types";
 
-// A deliberately small, curated bank across a handful of light categories —
-// easy to extend, not aiming for exhaustive coverage of any one topic.
-// Difficulty is a rough blend of length, letter variety and how common the
-// word/phrase is, not a strict formula.
+// A small, curated bank — easy to extend, not exhaustive. Difficulty is a
+// rough blend of length, letter variety, and how common the word is.
 export const ENTRIES: WordEntry[] = [
   // --- Words: easy (short, everyday) ---
   { text: "CAT", category: "Animals", type: "word", difficulty: "easy" },

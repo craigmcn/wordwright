@@ -7,12 +7,7 @@ interface ClockMechanismProps {
   isChiming: boolean;
 }
 
-/**
- * Builds a wall clock one piece at a time as wrong guesses come in. Each of
- * the CLOCK_PART_COUNT parts becomes visible once wrongGuesses reaches its
- * scaled stage (see clockPartStage) — the bell is always the last part, so
- * the clock always finishes and chimes on the losing guess.
- */
+/** Builds a wall clock one piece at a time; see clockPartStage for the reveal math. */
 export function ClockMechanism({
   wrongGuesses,
   maxWrongGuesses,
