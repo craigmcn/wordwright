@@ -1,5 +1,7 @@
 import { test, expect } from "@playwright/test";
 
+// rgb() values below are the light/dark --bg tokens from src/index.css —
+// update them here if that palette changes.
 test("follows the OS color scheme", async ({ page }) => {
   await page.emulateMedia({ colorScheme: "light" });
   await page.goto("/");

@@ -70,25 +70,27 @@ describe("App", () => {
     // deterministic — see pickRandomEntry in lib/gameLogic.ts.
     const randomSpy = vi.spyOn(Math, "random").mockReturnValue(0);
     const vibrateSpy = vi.fn();
-    Object.defineProperty(navigator, "vibrate", {
-      value: vibrateSpy,
-      configurable: true,
-    });
+    vi.stubGlobal("navigator", { ...navigator, vibrate: vibrateSpy });
 
-    const user = userEvent.setup();
-    render(<App />);
-    await user.click(screen.getByRole("button", { name: "Start game" }));
+    try {
+      const user = userEvent.setup();
+      render(<App />);
+      await user.click(screen.getByRole("button", { name: "Start game" }));
 
-    for (const letter of "PLATYUS") {
-      await user.click(
-        screen.getByRole("button", { name: `Guess letter ${letter}` }),
-      );
+      for (const letter of "PLATYUS") {
+        await user.click(
+          screen.getByRole("button", { name: `Guess letter ${letter}` }),
+        );
+      }
+
+      expect(screen.getByRole("status")).toHaveTextContent("You solved it!");
+      expect(vibrateSpy).toHaveBeenCalledWith(40);
+    } finally {
+      // A thrown assertion above must not leave Math.random/navigator
+      // mocked for later tests in this file.
+      randomSpy.mockRestore();
+      vi.unstubAllGlobals();
     }
-
-    expect(screen.getByRole("status")).toHaveTextContent("You solved it!");
-    expect(vibrateSpy).toHaveBeenCalledWith(40);
-
-    randomSpy.mockRestore();
   });
 
   it("returns to the setup screen when settings are changed after a game", async () => {

@@ -88,6 +88,7 @@ describe("feedback with the Web Audio and Vibration APIs available", () => {
 
     const gains = mockContext.createGain.mock.results.map((r) => r.value);
     for (const gain of gains) {
+      expect(gain.connect).toHaveBeenCalledWith(mockContext.destination);
       expect(gain.gain.setValueAtTime).toHaveBeenCalledOnce();
       expect(gain.gain.exponentialRampToValueAtTime).toHaveBeenCalledTimes(2);
     }
