@@ -1,19 +1,19 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
-  <rect width="512" height="512" fill="#201830" />
+  <rect width="512" height="512" fill="#1f7a6b" />
   <g transform="translate(256,256) scale(0.62) translate(-256,-272)">
-    <circle cx="256" cy="272" r="150" fill="#f1e4c8" stroke="#c9974c" stroke-width="14" />
-    <circle cx="256" cy="272" r="150" fill="none" stroke="#8a6a2f" stroke-width="4" />
-    <g stroke="#2b1f3d" stroke-width="9" stroke-linecap="round">
+    <circle cx="256" cy="272" r="150" fill="#e7ece3" stroke="#d4a94c" stroke-width="14" />
+    <circle cx="256" cy="272" r="150" fill="none" stroke="#9c7a2e" stroke-width="4" />
+    <g stroke="#22303a" stroke-width="9" stroke-linecap="round">
       <line x1="256" y1="150" x2="256" y2="172" />
       <line x1="256" y1="372" x2="256" y2="394" />
       <line x1="134" y1="272" x2="156" y2="272" />
       <line x1="356" y1="272" x2="378" y2="272" />
     </g>
-    <line x1="256" y1="272" x2="212" y2="230" stroke="#2b1f3d" stroke-width="16" stroke-linecap="round" />
-    <line x1="256" y1="272" x2="320" y2="190" stroke="#2b1f3d" stroke-width="11" stroke-linecap="round" />
-    <circle cx="256" cy="272" r="13" fill="#e6472a" />
-    <rect x="230" y="86" width="52" height="24" rx="6" fill="#8a6a2f" />
-    <path d="M222 60 Q256 20 290 60 Z" fill="#d6304b" stroke="#8a6a2f" stroke-width="6" />
-    <circle cx="256" cy="60" r="7" fill="#8a6a2f" />
+    <line x1="256" y1="272" x2="212" y2="230" stroke="#22303a" stroke-width="16" stroke-linecap="round" />
+    <line x1="256" y1="272" x2="320" y2="190" stroke="#22303a" stroke-width="11" stroke-linecap="round" />
+    <circle cx="256" cy="272" r="13" fill="#145c50" />
+    <rect x="230" y="86" width="52" height="24" rx="6" fill="#9c7a2e" />
+    <path d="M222 60 Q256 20 290 60 Z" fill="#b23a50" stroke="#9c7a2e" stroke-width="6" />
+    <circle cx="256" cy="60" r="7" fill="#9c7a2e" />
   </g>
 </svg>

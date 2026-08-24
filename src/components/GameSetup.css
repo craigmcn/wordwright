@@ -56,7 +56,7 @@
 
 .game-setup__option--selected {
   border-color: var(--accent-strong);
-  background: var(--correct-bg);
+  background: var(--accent-bg);
 }
 
 .game-setup__option-label {
