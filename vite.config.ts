@@ -9,6 +9,9 @@ export default defineConfig({
   server: {
     port: 3170,
   },
+  preview: {
+    port: 3171,
+  },
   test: {
     environment: "happy-dom",
     globals: true,

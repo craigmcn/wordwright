@@ -16,9 +16,19 @@ export default defineConfig({
       use: { ...devices["Desktop Chrome"] },
     },
   ],
-  webServer: {
-    command: "yarn dev",
-    url: "http://localhost:3170",
-    reuseExistingServer: !process.env.CI,
-  },
+  webServer: [
+    {
+      command: "yarn dev",
+      url: "http://localhost:3170",
+      reuseExistingServer: !process.env.CI,
+    },
+    {
+      // The service worker only activates on a production build — the dev
+      // server (above) has no PWA behavior to test offline against.
+      command: "yarn build && yarn preview",
+      url: "http://localhost:3171",
+      reuseExistingServer: !process.env.CI,
+      timeout: 60_000,
+    },
+  ],
 });
