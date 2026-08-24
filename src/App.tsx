@@ -12,7 +12,7 @@ import { ClockMechanism } from "./components/ClockMechanism";
 import { WordDisplay } from "./components/WordDisplay";
 import { Keyboard } from "./components/Keyboard";
 import { GameSetup } from "./components/GameSetup";
-import { playChimeRing, vibrate } from "./lib/feedback";
+import { playChimeRing, unlockAudio, vibrate } from "./lib/feedback";
 import "./App.css";
 
 function App() {
@@ -26,6 +26,9 @@ function App() {
   }, [difficulty, mode]);
 
   const handleGuess = useCallback((letter: string) => {
+    // Must run synchronously inside this real user gesture — see
+    // unlockAudio's doc comment for why the later useEffect can't do this.
+    unlockAudio();
     setGame((current) => (current ? guessLetter(current, letter) : current));
   }, []);
 
