@@ -58,6 +58,22 @@ yarn typecheck       # tsc -b
   override block; component CSS files consume only `var(--token)`
   references. Display font is "Baloo 2" (headings, letter tiles, buttons),
   body font is "Nunito" — both loaded via Google Fonts in `index.html`.
+- **Responsive layout:** mobile-first, sized with `clamp()` rather than
+  fixed breakpoints (see `App.css`, `Keyboard.css`, `WordDisplay.css`,
+  `GameSetup.css`) so the board fits without horizontal scroll down to a
+  ~320px viewport. Hover-only affordances are gated behind
+  `@media (hover: hover) and (pointer: fine)` so a tap on touch devices
+  doesn't leave a control looking "stuck" hovered.
+  `WordDisplay.tsx` groups letters into per-word runs before rendering so
+  `flex-wrap` only breaks a line between words, never mid-word — grouping
+  by word, not by character, is what makes that guarantee hold.
+- **Feedback on win/loss:** `src/lib/feedback.ts` — `playChimeRing()`
+  synthesizes a short two-tone bell via the Web Audio API (no audio asset,
+  so it works offline in the PWA); `vibrate()` wraps the Vibration API.
+  Both no-op silently where unsupported (e.g. Safari has no Vibration
+  API) rather than throwing. Wired into `GameBoard` in `App.tsx` via a
+  `useEffect` keyed on `game.status`: a loss rings and vibrates a longer
+  pattern, a win vibrates a single short pulse.
 - **PWA / offline:** `vite-pwa.config.ts` (imported by `vite.config.ts`)
   configures `vite-plugin-pwa` — manifest, icons (`public/icons/`,
   rasterized from `design/*.svg` via `rsvg-convert`; see

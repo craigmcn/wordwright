@@ -12,6 +12,7 @@ import { ClockMechanism } from "./components/ClockMechanism";
 import { WordDisplay } from "./components/WordDisplay";
 import { Keyboard } from "./components/Keyboard";
 import { GameSetup } from "./components/GameSetup";
+import { playChimeRing, unlockAudio, vibrate } from "./lib/feedback";
 import "./App.css";
 
 function App() {
@@ -25,6 +26,9 @@ function App() {
   }, [difficulty, mode]);
 
   const handleGuess = useCallback((letter: string) => {
+    // Must run synchronously inside this real user gesture — see
+    // unlockAudio's doc comment for why the later useEffect can't do this.
+    unlockAudio();
     setGame((current) => (current ? guessLetter(current, letter) : current));
   }, []);
 
@@ -90,6 +94,15 @@ function GameBoard({
   const remaining = game.maxWrongGuesses - game.wrongGuesses;
   const isOver = game.status !== "playing";
 
+  useEffect(() => {
+    if (game.status === "lost") {
+      playChimeRing();
+      vibrate([40, 30, 40, 30, 120]);
+    } else if (game.status === "won") {
+      vibrate(40);
+    }
+  }, [game.status]);
+
   return (
     <>
       <p className="app__category">
@@ -112,32 +125,40 @@ function GameBoard({
 
       <WordDisplay chars={getDisplayChars(game)} />
 
-      {isOver && (
-        <div className="app__result">
-          {game.status === "lost" && (
-            <p className="app__answer">The answer was: {game.entry.text}</p>
-          )}
-          <div className="app__result-actions">
-            <button type="button" className="app__restart" onClick={onRestart}>
-              Play again
-            </button>
-            <button
-              type="button"
-              className="app__change-settings"
-              onClick={onChangeSettings}
-            >
-              Change settings
-            </button>
-          </div>
-        </div>
-      )}
+      <div className="app__keyboard-area">
+        <Keyboard
+          guessedLetters={game.guessedLetters}
+          correctLetters={correctLetters}
+          disabled={isOver}
+          onGuess={onGuess}
+        />
 
-      <Keyboard
-        guessedLetters={game.guessedLetters}
-        correctLetters={correctLetters}
-        disabled={isOver}
-        onGuess={onGuess}
-      />
+        {isOver && (
+          <div className="app__result-overlay">
+            <div className="app__result">
+              {game.status === "lost" && (
+                <p className="app__answer">The answer was: {game.entry.text}</p>
+              )}
+              <div className="app__result-actions">
+                <button
+                  type="button"
+                  className="app__restart"
+                  onClick={onRestart}
+                >
+                  Play again
+                </button>
+                <button
+                  type="button"
+                  className="app__change-settings"
+                  onClick={onChangeSettings}
+                >
+                  Change settings
+                </button>
+              </div>
+            </div>
+          </div>
+        )}
+      </div>
     </>
   );
 }

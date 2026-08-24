@@ -73,13 +73,7 @@ export function createGame(
   };
 }
 
-/**
- * Which wrong-guess count reveals clock part `partIndex` (0-based), scaled
- * so all CLOCK_PART_COUNT parts still appear by the final allowed miss even
- * when a difficulty allows fewer than CLOCK_PART_COUNT wrong guesses. The
- * last part (the bell) always lands on the final stage, so the clock always
- * finishes and chimes on the losing guess.
- */
+/** Wrong-guess count that reveals part `partIndex` (0-based); the last part always lands on the final stage, so the clock chimes on the losing guess. */
 export function clockPartStage(
   partIndex: number,
   maxWrongGuesses: number,

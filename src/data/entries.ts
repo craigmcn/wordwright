@@ -1,9 +1,7 @@
 import type { WordEntry } from "../types";
 
-// A deliberately small, curated bank across a handful of light categories —
-// easy to extend, not aiming for exhaustive coverage of any one topic.
-// Difficulty is a rough blend of length, letter variety and how common the
-// word/phrase is, not a strict formula.
+// A small, curated bank — easy to extend, not exhaustive. Difficulty is a
+// rough blend of length, letter variety, and how common the word is.
 export const ENTRIES: WordEntry[] = [
   // --- Words: easy (short, everyday) ---
   { text: "CAT", category: "Animals", type: "word", difficulty: "easy" },
@@ -43,6 +41,82 @@ export const ENTRIES: WordEntry[] = [
   },
   { text: "XYLOPHONE", category: "Music", type: "word", difficulty: "hard" },
   { text: "SOURDOUGH", category: "Food", type: "word", difficulty: "hard" },
+  { text: "ARMADILLO", category: "Animals", type: "word", difficulty: "hard" },
+  {
+    text: "RHINOCEROS",
+    category: "Animals",
+    type: "word",
+    difficulty: "hard",
+  },
+  { text: "PORCUPINE", category: "Animals", type: "word", difficulty: "hard" },
+  { text: "AARDVARK", category: "Animals", type: "word", difficulty: "hard" },
+  {
+    text: "POMEGRANATE",
+    category: "Food",
+    type: "word",
+    difficulty: "hard",
+  },
+  { text: "ARTICHOKE", category: "Food", type: "word", difficulty: "hard" },
+  {
+    text: "WORCESTERSHIRE",
+    category: "Food",
+    type: "word",
+    difficulty: "hard",
+  },
+  {
+    text: "KALEIDOSCOPE",
+    category: "Objects",
+    type: "word",
+    difficulty: "hard",
+  },
+  {
+    text: "STALACTITE",
+    category: "Nature",
+    type: "word",
+    difficulty: "hard",
+  },
+  {
+    text: "ARCHIPELAGO",
+    category: "Nature",
+    type: "word",
+    difficulty: "hard",
+  },
+  {
+    text: "HARPSICHORD",
+    category: "Music",
+    type: "word",
+    difficulty: "hard",
+  },
+  {
+    text: "GLOCKENSPIEL",
+    category: "Music",
+    type: "word",
+    difficulty: "hard",
+  },
+  {
+    text: "SILHOUETTE",
+    category: "Everyday",
+    type: "word",
+    difficulty: "hard",
+  },
+  {
+    text: "BUREAUCRACY",
+    category: "Everyday",
+    type: "word",
+    difficulty: "hard",
+  },
+  {
+    text: "ENTREPRENEUR",
+    category: "Everyday",
+    type: "word",
+    difficulty: "hard",
+  },
+  {
+    text: "MITOCHONDRIA",
+    category: "Science",
+    type: "word",
+    difficulty: "hard",
+  },
 
   // --- Phrases: easy (two short, familiar words) ---
   { text: "HAT TRICK", category: "Sports", type: "phrase", difficulty: "easy" },
