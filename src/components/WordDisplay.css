@@ -1,0 +1,28 @@
+.word-display__row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+  justify-content: center;
+}
+
+.word-display__cell {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 2.2rem;
+  height: 2.6rem;
+  border-bottom: 4px solid var(--brass);
+  font-family: var(--font-display);
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: var(--text);
+  text-transform: uppercase;
+}
+
+.word-display__cell--revealed {
+  border-color: var(--correct);
+}
+
+.word-display__gap {
+  width: 1rem;
+}

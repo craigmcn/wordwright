@@ -1,0 +1,62 @@
+.keyboard {
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+  align-items: center;
+}
+
+.keyboard__row {
+  display: flex;
+  gap: 0.35rem;
+}
+
+.keyboard__key {
+  min-width: 2.1rem;
+  height: 2.6rem;
+  border-radius: 0.5rem;
+  border: 2px solid var(--border);
+  background: var(--bg-panel);
+  color: var(--text);
+  font-family: var(--font-display);
+  font-weight: 600;
+  font-size: 1rem;
+  cursor: pointer;
+  transition:
+    transform 0.1s ease,
+    background 0.15s ease,
+    border-color 0.15s ease;
+}
+
+.keyboard__key:hover:not(:disabled) {
+  transform: translateY(-2px);
+  border-color: var(--accent);
+}
+
+.keyboard__key:active:not(:disabled) {
+  transform: translateY(0);
+}
+
+.keyboard__key:disabled {
+  cursor: default;
+}
+
+.keyboard__key--correct {
+  background: var(--correct-bg);
+  border-color: var(--correct);
+  color: var(--correct);
+}
+
+.keyboard__key--wrong {
+  background: var(--wrong-bg);
+  border-color: var(--wrong);
+  color: var(--wrong);
+  opacity: 0.7;
+}
+
+@media (max-width: 420px) {
+  .keyboard__key {
+    min-width: 1.7rem;
+    height: 2.2rem;
+    font-size: 0.85rem;
+  }
+}
