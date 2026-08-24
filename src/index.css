@@ -51,6 +51,12 @@ body {
   padding: 0;
 }
 
+html {
+  /* Prevents any single element's mobile-viewport rounding from creating a
+     horizontal scrollbar on the whole page. */
+  overflow-x: hidden;
+}
+
 body {
   background: var(--bg);
   color: var(--text);

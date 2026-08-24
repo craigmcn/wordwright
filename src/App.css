@@ -1,16 +1,17 @@
 .app {
   max-width: 640px;
   margin: 0 auto;
-  padding: 2rem 1.25rem 3rem;
+  padding: clamp(1rem, 4vw, 2rem) clamp(0.75rem, 4vw, 1.25rem)
+    clamp(1.5rem, 5vw, 3rem);
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 1.1rem;
+  gap: clamp(0.75rem, 3vw, 1.1rem);
   text-align: center;
 }
 
 .app__header h1 {
-  font-size: 2.6rem;
+  font-size: clamp(1.9rem, 9vw, 2.6rem);
   color: var(--accent-strong);
   letter-spacing: 0.02em;
 }
@@ -18,6 +19,7 @@
 .app__tagline {
   margin: 0.25rem 0 0;
   color: var(--text-muted);
+  font-size: clamp(0.9rem, 3vw, 1rem);
 }
 
 .app__category {

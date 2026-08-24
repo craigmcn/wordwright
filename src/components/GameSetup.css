@@ -35,7 +35,7 @@
   flex-direction: column;
   align-items: center;
   gap: 0.15rem;
-  min-width: 6.5rem;
+  min-width: clamp(5.5rem, 26vw, 6.5rem);
   padding: 0.6rem 0.9rem;
   border-radius: 0.9rem;
   border: 2px solid var(--border);
@@ -47,9 +47,11 @@
     transform 0.1s ease;
 }
 
-.game-setup__option:hover {
-  transform: translateY(-2px);
-  border-color: var(--accent);
+@media (hover: hover) and (pointer: fine) {
+  .game-setup__option:hover {
+    transform: translateY(-2px);
+    border-color: var(--accent);
+  }
 }
 
 .game-setup__option--selected {
@@ -81,6 +83,8 @@
   transition: transform 0.1s ease;
 }
 
-.game-setup__start:hover {
-  transform: translateY(-2px);
+@media (hover: hover) and (pointer: fine) {
+  .game-setup__start:hover {
+    transform: translateY(-2px);
+  }
 }

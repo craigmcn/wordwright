@@ -12,6 +12,7 @@ import { ClockMechanism } from "./components/ClockMechanism";
 import { WordDisplay } from "./components/WordDisplay";
 import { Keyboard } from "./components/Keyboard";
 import { GameSetup } from "./components/GameSetup";
+import { playChimeRing, vibrate } from "./lib/feedback";
 import "./App.css";
 
 function App() {
@@ -89,6 +90,15 @@ function GameBoard({
   const correctLetters = getGuessableLetters(game.entry.text);
   const remaining = game.maxWrongGuesses - game.wrongGuesses;
   const isOver = game.status !== "playing";
+
+  useEffect(() => {
+    if (game.status === "lost") {
+      playChimeRing();
+      vibrate([40, 30, 40, 30, 120]);
+    } else if (game.status === "won") {
+      vibrate(40);
+    }
+  }, [game.status]);
 
   return (
     <>
