@@ -10,8 +10,8 @@ export function pwaPlugin(): ReturnType<typeof VitePWA> {
       short_name: "Wordwright",
       description:
         "Guess the word or phrase before the clockwork mechanism finishes building and chimes.",
-      theme_color: "#201830",
-      background_color: "#201830",
+      theme_color: "#17211f",
+      background_color: "#17211f",
       display: "standalone",
       start_url: ".",
       scope: ".",

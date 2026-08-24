@@ -53,7 +53,7 @@ function App() {
       <header className="app__header">
         <h1>Wordwright</h1>
         <p className="app__tagline">
-          Guess the word before the clock finishes building — and chimes.
+          Guess the word before the clock finishes building… and chimes.
         </p>
       </header>
 
