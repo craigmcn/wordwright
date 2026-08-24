@@ -122,32 +122,40 @@ function GameBoard({
 
       <WordDisplay chars={getDisplayChars(game)} />
 
-      {isOver && (
-        <div className="app__result">
-          {game.status === "lost" && (
-            <p className="app__answer">The answer was: {game.entry.text}</p>
-          )}
-          <div className="app__result-actions">
-            <button type="button" className="app__restart" onClick={onRestart}>
-              Play again
-            </button>
-            <button
-              type="button"
-              className="app__change-settings"
-              onClick={onChangeSettings}
-            >
-              Change settings
-            </button>
-          </div>
-        </div>
-      )}
+      <div className="app__keyboard-area">
+        <Keyboard
+          guessedLetters={game.guessedLetters}
+          correctLetters={correctLetters}
+          disabled={isOver}
+          onGuess={onGuess}
+        />
 
-      <Keyboard
-        guessedLetters={game.guessedLetters}
-        correctLetters={correctLetters}
-        disabled={isOver}
-        onGuess={onGuess}
-      />
+        {isOver && (
+          <div className="app__result-overlay">
+            <div className="app__result">
+              {game.status === "lost" && (
+                <p className="app__answer">The answer was: {game.entry.text}</p>
+              )}
+              <div className="app__result-actions">
+                <button
+                  type="button"
+                  className="app__restart"
+                  onClick={onRestart}
+                >
+                  Play again
+                </button>
+                <button
+                  type="button"
+                  className="app__change-settings"
+                  onClick={onChangeSettings}
+                >
+                  Change settings
+                </button>
+              </div>
+            </div>
+          </div>
+        )}
+      </div>
     </>
   );
 }

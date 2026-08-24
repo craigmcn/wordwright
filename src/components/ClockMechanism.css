@@ -1,6 +1,9 @@
 .clock-mechanism {
   width: 100%;
-  max-width: 260px;
+  /* Scales down on narrow viewports so the clock takes up less vertical
+     space above the fold on mobile; the SVG's own aspect ratio (from its
+     viewBox) keeps height in proportion automatically. */
+  max-width: clamp(170px, 45vw, 260px);
   filter: drop-shadow(0 6px 10px var(--shadow));
 }
 
